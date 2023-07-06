@@ -1,0 +1,123 @@
+#cards {
+  /* 預設是軸- row */
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%; /* 新增：寬度和標頭一致 */
+  margin: 0 auto; /* 新增：置中 */
+}
+
+.card {
+  /* 卡片在容器裡的排版(卡片在容器裡佔的比例)*/
+
+  /* flex-basis(比例)來說，100/13(張) = 7...，因此flex:7% (寬度)*/
+  /* flex-grow(剩餘空間)是否會將剩餘空間占用*/
+  /* flex-shirnk(收縮空間)是否會將不夠的空間收縮 */
+  flex: 7% 1 1;
+  height: 8vw;
+  /* vw等於相對大小，100vw等於100%的視窗大小 */
+  border: 2px solid #e0e0e0;
+  margin: 2px; /* 卡片邊距 */
+  box-sizing: border-box;
+  /* 卡片內部元素的排版 */
+  display: flex;
+  /* 主要軸 main axis */
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card img {
+  max-width: 30%;
+  align-self: center;
+  /* card 的主要軸是column，因此交叉軸是row(衡的)，而align-self使用center便會橫向致中*/
+}
+
+.card p {
+  /* 一開始沒有在卡片內部，超出卡片，因為瀏覽器有預設的margin讓文字超出 */
+  /* 瀏覽器預設給 p 元素的 margin 比較大 */
+  /* 強制margin設為0 */
+  margin: 3px;
+  font-size: 10px;
+}
+
+.card p:last-child {
+  /* 意旨最後一個p*/
+  transform: rotate(180deg);
+  /* 180度翻轉 */
+}
+
+.back {
+  background: url("https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png");
+  background-size: cover;
+}
+
+.paired {
+  background-color: #dae0e3;
+}
+
+#header {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  /* 次要軸是column */
+  align-items: flex-end;
+  width: 85%;
+}
+
+#header .title {
+  display: flex;
+  width: 100%;
+  /* 主要軸是row */
+  justify-content: flex-end;
+}
+
+#header .title img {
+  max-width: 3em;
+}
+
+#header .title h2 {
+  padding-left: 0.5em;
+}
+
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+
+#header .tried {
+  margin-top: 0;
+}
+
+.wrong {
+  animation-name: wrongAnimation; /* 會撥幾秒 */
+  animation-duration: 0.2s; /* 會撥幾秒 */
+  animation-iteration-count: 5; /* 會播幾次 */
+}
+
+/* CSS現成動畫，透過@keyframes 指定wrongAnimation的動畫流程*/
+@keyframes wrongAnimation {
+  to {
+    /* 結束狀態 => 當動畫發生時，元素要逐漸加上黃色邊框 */
+    border: 2px solid #f1c232;
+  }
+}
+
+/** Game finished **/
+.completed {
+  position: absolute;
+  z-index: 999;
+  top: 33vh;
+  background-color: RGBA(232, 246, 254, 0.8);
+  width: 100vw;
+  padding: 50px 0;
+}
+.completed > p {
+  font-size: 1.5em;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+.completed > p:first-child {
+  font-size: 3em;
+  font-weight: 700;
+  color: #758d9a;
+}
